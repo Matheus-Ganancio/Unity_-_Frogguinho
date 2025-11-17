@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     private float activeSpeed;
 
+    private bool isGrounded
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

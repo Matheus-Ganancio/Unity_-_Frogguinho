@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 655267044}
   - component: {fileID: 655267043}
   - component: {fileID: 655267045}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 910437119}
   - component: {fileID: 910437118}
   - component: {fileID: 910437120}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 1012924059}
   - component: {fileID: 1012924058}
   - component: {fileID: 1012924060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 1068802008}
   - component: {fileID: 1068802010}
   - component: {fileID: 1068802011}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +685,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0fb449f830fd14c43901ba2abf2dee1a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -725,6 +725,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
+  theRB: {fileID: 1068802008}
+  jumpForce: 22
+  runSpeed: 12
 --- !u!1 &1802447931
 GameObject:
   m_ObjectHideFlags: 0
