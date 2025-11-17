@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movimentacao direcional")]
     public float moveSpeed;
     public Rigidbody2D theRB;
     public float jumpForce;
     public float runSpeed;
-
+    // essa variavel vai ser usada para transicionar entre a velocidade de movimento padrão "moveSpeed" e
+    // a velocidade de movimento da corrida "runSpeed"
     private float activeSpeed;
 
-    private bool isGrounded
+    [Header("Configuracao de pulo")]
+    public Transform groundedCheckPoint;
+    public float groundedCheckRadius;
+    public LayerMask whatIsGrounded;
+    private bool isGrounded;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +29,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Physics2D.OverlapCircle serve para criar um circulo imaginário qual será usado para verificar se o player
+        // está ou não em contato com o chão, assim controlar o bool "isGrounded" para o player pular apenas quando
+        // estiver no chão
+        isGrounded = Physics2D.OverlapCircle(groundedCheckPoint.position, groundedCheckRadius, whatIsGrounded);
+
         // não precisa usar "if" pq o valor é negativo apertando pra esquerda ou positivo apertando pra direita
         // Vector2 usa os eixos X e Y, no caso está multiplicando o input da unity "Horizontal" pela variavel "modeSpeed"
         // e aplicando na linearVelocity.y, assim faz se mover baseado no valor da variavel para velocidade
@@ -40,7 +52,10 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButtonDown("Jump"))
         {
-            theRB.linearVelocity = new Vector2(theRB.linearVelocity.x, jumpForce);
+            if (isGrounded == true)
+            {
+                theRB.linearVelocity = new Vector2(theRB.linearVelocity.x, jumpForce);
+            }
         }
     }
 }
