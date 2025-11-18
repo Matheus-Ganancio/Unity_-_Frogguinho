@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float groundedCheckRadius;
     public LayerMask whatIsGrounded;
     private bool isGrounded;
+    private bool canDoubleJump;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -55,6 +56,17 @@ public class PlayerController : MonoBehaviour
             if (isGrounded == true)
             {
                 theRB.linearVelocity = new Vector2(theRB.linearVelocity.x, jumpForce);
+                canDoubleJump = true;
+            }
+            else 
+            {
+                // usa o canDoubleJump habilitado ao final do "if (isGrounded == true)" para acessar um segundo pulo no ar,
+                //desativa mais pulos caso já tenha usado um segundo pulo
+                if (canDoubleJump == true)
+                {
+                    theRB.linearVelocity = new Vector2(theRB.linearVelocity.x, jumpForce);
+                    canDoubleJump = false;
+                }
             }
         }
     }
