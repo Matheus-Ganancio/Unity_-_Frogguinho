@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded == true)
             {
-                theRB.linearVelocity = new Vector2(theRB.linearVelocity.x, jumpForce);
+                Jump();
                 canDoubleJump = true;
             }
             else 
@@ -64,10 +64,15 @@ public class PlayerController : MonoBehaviour
                 //desativa mais pulos caso já tenha usado um segundo pulo
                 if (canDoubleJump == true)
                 {
-                    theRB.linearVelocity = new Vector2(theRB.linearVelocity.x, jumpForce);
+                    Jump();
                     canDoubleJump = false;
                 }
             }
         }
+    }
+
+    void Jump()
+    {
+        theRB.linearVelocity = new Vector2(theRB.linearVelocity.x, jumpForce);
     }
 }
