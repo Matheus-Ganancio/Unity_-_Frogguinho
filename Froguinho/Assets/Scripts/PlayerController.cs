@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool canDoubleJump;
 
+    [Header("Animator")]
+    public Animator anim;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
