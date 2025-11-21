@@ -73,6 +73,18 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // verifica o valor da velocidade no X é maior ou menor que zero para usar na movimentacao e inverter
+        // todo o eixo x do player, assim inverte nao apenas o sprite do personagem, mas tudo atrelado a ele,
+        // como ponto de disparo de projetil
+        if(theRB.linearVelocity.x > 0)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        if(theRB.linearVelocity.x < 0)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+
         // animation setup
 
         // Aqui é controlado para que faça a transicao no animator usando a variavel speed criada no animator, aqui também
