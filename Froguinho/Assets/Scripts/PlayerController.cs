@@ -72,6 +72,16 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        // animation setup
+
+        // Aqui é controlado para que faça a transicao no animator usando a variavel speed criada no animator, aqui também
+        // é passado para aplicar o valor positivo independente da direção(-5 pode se tornar simplesmente 5), assim aplica a 
+        // animação que está pra ser chamada sempre que a velocidade for maior que 0.1
+        anim.SetFloat("speed", Mathf.Abs (theRB.linearVelocity.x));
+
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetFloat("ySpeed", theRB.linearVelocity.y);
     }
 
     void Jump()
