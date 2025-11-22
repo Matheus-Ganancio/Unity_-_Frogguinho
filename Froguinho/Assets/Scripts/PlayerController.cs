@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGrounded;
     private bool isGrounded;
     private bool canDoubleJump;
+    private bool isDoubleJump;
 
     [Header("Animator")]
     public Animator anim;
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();
                 canDoubleJump = true;
+                isDoubleJump = false;
             }
             else 
             {
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
                 if (canDoubleJump == true)
                 {
                     Jump();
+                    isDoubleJump = true;
                     canDoubleJump = false;
                 }
             }
@@ -94,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("ySpeed", theRB.linearVelocity.y);
+        anim.SetBool("isDoubleJump", isDoubleJump);
     }
 
     void Jump()
