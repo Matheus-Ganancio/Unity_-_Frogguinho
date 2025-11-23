@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();
                 canDoubleJump = true;
-                anim.SetBool("isDoubleJump", false);
+                isDoubleJump = false;
             }
             else 
             {
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
                 {
                     Jump();
                     isDoubleJump = true;
-                    anim.SetBool("isDoubleJump", true);
+                    canDoubleJump = false;
                 }
             }
         }
@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("speed", Mathf.Abs (theRB.linearVelocity.x));
 
         anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("isDoubleJump", isDoubleJump);
         anim.SetFloat("ySpeed", theRB.linearVelocity.y);
     }
 
