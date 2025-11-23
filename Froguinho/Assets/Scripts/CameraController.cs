@@ -5,15 +5,29 @@ public class CameraController : MonoBehaviour
 
     public Transform target;
 
+    [Header("Orientacao da camera")]
     public bool freezeVertical;
     public bool freezeHorizontal;
+    private Vector3 positionStore;
 
-    private Vector3 positionStore; 
+    // clampMin e clampMax serao usadas para definir o ponto A e B maximo do qual podera ser mostrado na tela do game,
+    // muito util para evitar a camera vazar ao seguir o player e mostrar algum local vazio (basicamente limitacao de alcance
+    // da camera)
+    public bool clampPosition;
+    public Transform clampMin;
+    public Transform clampMax;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         positionStore = transform.position;
+
+        // remove a camera ser pai dos emptyObjects que foram adicionados as variaveis clampMin e clampMax dentro da unity,
+        // no editor a camera esta como pai desses objetos para organizacao do projeto, aqui deixa de ser ao iniciar o game
+        // para que a camera nao mova os clamps ao se mover
+        clampMin.SetParent(null);
+        clampMax.SetParent(null);
     }
 
     // LateUpdate faz também ser chamado uma vez por frame como o update, mas sera chamado apos os outros
@@ -33,6 +47,14 @@ public class CameraController : MonoBehaviour
         {
             // aqui trava a camera para seguir o player apenas no X, preservando a posição padrão da camera no Y e Z
             transform.position = new Vector3(positionStore.x, transform.position.y, transform.position.z);
+        }
+
+        if(clampPosition == true)
+        {
+            transform.position = new Vector3(
+                Mathf.Clamp(transform.position.x, clampMin.position.x, clampMax.position.x),
+                Mathf.Clamp(transform.position.y, clampMin.position.y, clampMax.position.y),
+                transform.position.z);
         }
     }
 }
