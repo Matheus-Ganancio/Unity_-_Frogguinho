@@ -16,8 +16,9 @@ public class CameraController : MonoBehaviour
         positionStore = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    // LateUpdate faz também ser chamado uma vez por frame como o update, mas sera chamado apos os outros
+    // updates terem rodado, é importante usar na camera para evitar um possivel efeito de "Jerky" na movimentacao dela
+    void LateUpdate()
     {
         transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
 
