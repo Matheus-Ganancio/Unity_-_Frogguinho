@@ -16,6 +16,13 @@ public class CameraController : MonoBehaviour
     public bool clampPosition;
     public Transform clampMin;
     public Transform clampMax;
+
+    // sera usado para salvar o calculo de metade da resolucao usada naquele momento no game, util para limitar no editor
+    // onde o clamp finaliza  como um ponto final ou inicial, inves deixar a camera passar parcialmente dele, ja que sem esse
+    // calculo a camera ultrapassa ate que a referencia de clamp do editor chegue ao centro da tela
+    private float halfHeight;
+    private float halfWidth;
+    public Camera theCam;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +35,10 @@ public class CameraController : MonoBehaviour
         // para que a camera nao mova os clamps ao se mover
         clampMin.SetParent(null);
         clampMax.SetParent(null);
+
+        // esta sendo usado para setar o calculo do aspect ratio do game
+        halfHeight = theCam.orthographicSize;
+        halfWidth = theCam.orthographicSize * theCam.aspect;
     }
 
     // LateUpdate faz também ser chamado uma vez por frame como o update, mas sera chamado apos os outros
@@ -51,9 +62,12 @@ public class CameraController : MonoBehaviour
 
         if(clampPosition == true)
         {
+            // usa as referencias inseridas nos transforms para definir limitador da camera(clamp) e subtrai a variavel
+            // que guarda e calcula metade do aspect ratio que o player esta usando para controle do clamp como ponto
+            // final ou inicial
             transform.position = new Vector3(
-                Mathf.Clamp(transform.position.x, clampMin.position.x, clampMax.position.x),
-                Mathf.Clamp(transform.position.y, clampMin.position.y, clampMax.position.y),
+                Mathf.Clamp(transform.position.x, clampMin.position.x + halfWidth, clampMax.position.x - halfWidth),
+                Mathf.Clamp(transform.position.y, clampMin.position.y + halfHeight, clampMax.position.y - halfHeight),
                 transform.position.z);
         }
     }
