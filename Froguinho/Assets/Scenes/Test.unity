@@ -232,6 +232,7 @@ MonoBehaviour:
   clampPosition: 1
   clampMin: {fileID: 1635311236}
   clampMax: {fileID: 644910644}
+  theCam: {fileID: 53542985}
 --- !u!1 &644910643
 GameObject:
   m_ObjectHideFlags: 0

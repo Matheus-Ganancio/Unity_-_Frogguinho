@@ -71,4 +71,21 @@ public class CameraController : MonoBehaviour
                 transform.position.z);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        // Caso a bool clampPosition esteja ativa, o editor(e apenas no editor) vai mostrar linhas desenhadas com o gizmo,
+        // cada linha parte de um clamp adicionado ao slot no editor criado com as variaveis "clampMin" e "clampMax", onde
+        // o eixo X de um clamp segue o eixo Y de outro, assim criando 4 linhas pra formar uma area de visao do clamp em cada
+        // ponto do game
+        if(clampPosition == true)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(clampMin.position, new Vector3(clampMin.position.x, clampMax.position.y, 0f));
+            Gizmos.DrawLine(clampMin.position, new Vector3(clampMax.position.x, clampMin.position.y, 0f));
+
+            Gizmos.DrawLine(clampMax.position, new Vector3(clampMin.position.x, clampMax.position.y, 0f));
+            Gizmos.DrawLine(clampMax.position, new Vector3(clampMax.position.x, clampMin.position.y, 0f));
+        }
+    }
 }
