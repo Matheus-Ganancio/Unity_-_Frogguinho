@@ -3684,6 +3684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sky: {fileID: 466746492}
   treeline: {fileID: 2121699563}
+  parallaxSpeed: 0.5
 --- !u!1 &1588550606
 GameObject:
   m_ObjectHideFlags: 0
