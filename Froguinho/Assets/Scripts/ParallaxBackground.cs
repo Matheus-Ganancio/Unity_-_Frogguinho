@@ -24,7 +24,7 @@ public class ParallaxBackground : MonoBehaviour
         // camera(variavel "theCam") pela velocidade setada na variavel "parallaxSpeed"
         treeline.position = new Vector3(
             theCam.position.x * parallaxSpeed,
-            theCam.position.y * parallaxSpeed,
+            theCam.position.y,
             treeline.position.z);
     }
 }
